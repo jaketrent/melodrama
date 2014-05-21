@@ -1,0 +1,26 @@
+{
+  "name": "melodrama",
+  "version": "1.0.0",
+  "homepage": "https://github.com/jaketrent/melodrama",
+  "authors": [
+    "jaketrent <trent.jake@gmail.com>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.10.2",
+    "handlebars": "1.1.2",
+    "ember": "1.5.1",
+    "ember-data": "~0.0.14"
+  }
+}

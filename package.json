@@ -1,0 +1,38 @@
+{
+  "name": "melodrama",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "DEBUG=mel:* node_modules/.bin/node-dev --harmony app/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaketrent/melodrama.git"
+  },
+  "engines": {
+    "node": "~0.11.13",
+    "npm": "~1.3.22"
+  },
+  "author": "jaketrent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaketrent/melodrama/issues"
+  },
+  "homepage": "https://github.com/jaketrent/melodrama",
+  "dependencies": {
+    "config": "^0.4.35",
+    "debug": "~0.8.1",
+    "express": "~4.2.0",
+    "jade": "~1.3.1",
+    "lodash": "^2.4.1",
+    "mincer": "~1.0.3",
+    "stylus": "~0.45.1",
+    "superagent": "~0.18.0",
+    "nib": "~1.0.2"
+  },
+  "devDependencies": {
+    "node-dev": "^2.3.0"
+  }
+}
