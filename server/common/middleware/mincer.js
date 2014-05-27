@@ -18,6 +18,5 @@ Mincer.logger.use({
 })
 
 environment.appendPath(path.join(__dirname, '..', '..', 'static'))
-environment.appendPath(path.join(__dirname, '..', '..', '..', 'bower_components'))
 
 exports.server = Mincer.createServer(environment)

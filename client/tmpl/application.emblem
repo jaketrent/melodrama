@@ -1,0 +1,7 @@
+.container
+  h1.title Melodrama!
+
+  h3 Songs:
+  ul
+    each song in this
+      li= song.title

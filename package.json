@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "DEBUG=mel:* node_modules/.bin/node-dev --harmony app/server.js"
+    "start": "DEBUG=mel:* node_modules/.bin/node-dev --harmony server/server.js",
+    "generate": "rm -rf server/static; broccoli build server/static"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,12 @@
     "nib": "~1.0.2"
   },
   "devDependencies": {
-    "node-dev": "^2.3.0"
+    "broccoli": "~0.12.0",
+    "broccoli-merge-trees": "~0.1.3",
+    "node-dev": "^2.3.0",
+    "broccoli-static-compiler": "~0.1.4",
+    "broccoli-ember-emblem": "~0.1.1",
+    "broccoli-concat": "0.0.6",
+    "broccoli-stylus": "~0.2.1"
   }
 }

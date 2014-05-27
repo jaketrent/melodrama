@@ -1,5 +1,11 @@
 module.exports = {
 
+  assets: {
+    baseUrl: 'http://localhost:4200',
+    cssPath: '/css/style.css',
+    jsPath: '/js/dist.js'
+  },
+
   collection: 'Childrens-EN',
 
   lang: 'en',
