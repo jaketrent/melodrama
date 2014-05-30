@@ -66882,21 +66882,71 @@ App.ApplicationRoute = Ember.Route.extend({
     return this.store.find('song')
   }
 })
-console.log('other')
+
+App.ApplicationController = Ember.ArrayController.extend({
+
+  initAudio: function () {
+    this.audio = new Audio()
+    this.currentSong = null
+    this.audio.addEventListener('ended', this.playNextSong.bind(this))
+  }.on('init'),
+
+  playNextSong: function () {
+    var songs = this.get('model')
+    console.log('songs')
+    console.log(songs)
+
+    var nextIndx = songs.indexOf(this.currentSong) + 1
+
+    if (nextIndx >= songs.length)
+      nextIndx = 0
+
+    this.currentSong = songs.objectAt(nextIndx)
+
+    this.play()
+  },
+
+  play: function () {
+    this.audio.src = this.currentSong.get('mp3')
+    this.audio.play()
+  },
+
+  actions: {
+    playSong: function (song) {
+      this.currentSong = song
+      this.play()
+    },
+    stopSong: function () {
+      this.audio.pause()
+    }
+  }
+})
+
+App.SongListComponent = Ember.Component.extend({
+  tagName: 'li',
+  play: 'playSong',
+  stop: 'stopSong',
+  actions: {
+    play: function () {
+      this.sendAction('play', this.get('song'))
+    },
+    stop: function () {
+      this.sendAction('stop')
+    }
+  }
+})
 Ember.TEMPLATES['application'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
 /**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, self=this;
+  var buffer = '', stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1;
-  data.buffer.push("<li>");
-  stack1 = helpers._triageMustache.call(depth0, "song.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</li>");
-  return buffer;
+  var helper, options;
+  data.buffer.push(escapeExpression((helper = helpers['song-list'] || (depth0 && depth0['song-list']),options={hash:{
+    'song': ("song")
+  },hashTypes:{'song': "ID"},hashContexts:{'song': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "song-list", options))));
   }
 
 function program3(depth0,data) {
@@ -66909,6 +66959,29 @@ function program3(depth0,data) {
   stack1 = helpers.each.call(depth0, "song", "in", "", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("</ul></div>");
+  return buffer;
+  
+})
+
+Ember.TEMPLATES['components/song-list'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+/**/) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  var buffer = '', stack1, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<span>");
+  stack1 = helpers._triageMustache.call(depth0, "song.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("</span><span>-</span><a ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "play", {hash:{
+    'on': ("click")
+  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Play</a><a ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "stop", {hash:{
+    'on': ("click")
+  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(">Stop</a>");
   return buffer;
   
 })

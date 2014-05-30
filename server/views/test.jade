@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title Test Audio
+body
+
+  script.
+
+    function canPlayMp3() {
+      var a = document.createElement('audio');
+      return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''))
+    }
+
+    var fileUrl = 'http://media2.ldscdn.org/assets/music/childrens-songbook/2002-01-0010-i-am-a-child-of-god-words-and-music-192k-eng.mp3'
+    var browserSupportsAudio = window.Audio != undefined
+    var browserSupportsMp3 = canPlayMp3()
+
+    if (browserSupportsAudio && browserSupportsMp3) {
+      var aud = new Audio()
+      aud.src = fileUrl
+      console.log('playing: ' + aud.src)
+      aud.play()
+
+      setTimeout(function () {
+        aud.pause()
+        console.log('stopped.')
+      }, 7000)
+
+    } else {
+      console.log('Playback support: audio: ' + browserSupportsAudio + ' mp3: ' + browserSupportsMp3)
+    }

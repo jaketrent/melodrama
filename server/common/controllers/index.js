@@ -7,3 +7,7 @@ exports.index = function (req, res) {
     assets: config.assets
   })
 }
+
+exports.test = function (req, res) {
+  res.render('test')
+}

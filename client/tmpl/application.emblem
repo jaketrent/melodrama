@@ -4,4 +4,4 @@
   h3 Songs:
   ul
     each song in this
-      li= song.title
+      song-list song=song

@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
-    "generate": "rm -rf server/static; broccoli build server/static",
+    "gen-client": "rm -rf server/static; broccoli build server/static",
+    "client": "broccoli serve",
     "start": "DEBUG=mel:* node_modules/.bin/node-dev --harmony server/server.js"
   },
   "repository": {
@@ -42,6 +43,7 @@
     "broccoli-static-compiler": "~0.1.4",
     "broccoli-ember-emblem": "~0.1.1",
     "broccoli-concat": "0.0.6",
-    "broccoli-stylus": "~0.2.1"
+    "broccoli-stylus": "~0.2.1",
+    "npm-ls-scripts": "~0.1.2"
   }
 }
