@@ -1,4 +1,0 @@
-span= song.title
-span -
-a.icon.play click="play"
-a.icon.stop click="stop"

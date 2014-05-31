@@ -54,6 +54,7 @@ App.ApplicationController = Ember.ArrayController.extend({
 
   actions: {
     playSong: function (song) {
+      console.log('playSong')
       this.currentSong = song
       this.play()
     },
@@ -63,17 +64,21 @@ App.ApplicationController = Ember.ArrayController.extend({
   }
 })
 
-App.SongListComponent = Ember.Component.extend({
+App.SongItemComponent = Ember.Component.extend({
   tagName: 'li',
   classNames: ['song-item'],
+  classNameBindings: ['isPlaying'],
   play: 'playSong',
   stop: 'stopSong',
+  isPlaying: false,
   actions: {
-    play: function () {
-      this.sendAction('play', this.get('song'))
-    },
-    stop: function () {
-      this.sendAction('stop')
+    togglePlay: function () {
+      if (this.get('isPlaying')) {
+        this.sendAction('stop')
+      } else {
+        this.sendAction('play', this.get('song'))
+      }
+      this.toggleProperty('isPlaying')
     }
   }
 })

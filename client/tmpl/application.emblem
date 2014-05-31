@@ -1,7 +1,5 @@
 .container
   h1.title Melodrama!
 
-  h3 Songs:
-  ul
-    each song in this
-      song-list song=song
+  each song in this
+    song-item song=song

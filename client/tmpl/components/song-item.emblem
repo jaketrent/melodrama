@@ -1,0 +1,2 @@
+.song-item-hit-area click="togglePlay"
+  span= song.title

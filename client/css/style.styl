@@ -1,9 +1,29 @@
+$list-width = 500px
+$item-height = 40px
 $icon-height = 15px
 
 $black = #000
 
+icon()
+  position: absolute
+  top: 12px
+  left: 15px
+  display: block
+  width: 0
+  height: 0
+  content: ''
+  z-index: 2
+
+play()
+  border-top: ($icon-height / 2) solid transparent
+  border-bottom: ($icon-height / 2) solid transparent
+  border-left: ($icon-height / 1.5) solid $black
+
+stop()
+  border: ($icon-height / 2) solid $black
+
 body
-  background: lightblue
+  font-family: sans-serif
 
 a
   cursor: pointer
@@ -25,8 +45,38 @@ a
   height: 0
   border: ($icon-height / 2) solid $black
 
-.song-item
+.song-list
+  padding-left: 0
+  list-style: none
 
-  .icon
-    margin-left: 2px
-    margin-right: 2px
+.song-item
+  position: relative
+  display: block
+  padding-left: ($icon-height / 2) + 15px + 15px
+  margin-bottom: 5px
+  height: $item-height
+  line-height: $item-height
+  border: 1px solid #747474
+  background: lightblue
+  border-radius: 4px
+  z-index: 1
+
+  &:hover
+    background: darken(lightblue, 10%)
+
+  &:hover:before
+    icon()
+    play()
+
+  &.is-playing
+    background: darken(lightblue, 20%)
+
+    &:before
+      icon()
+      play()
+
+    &:hover:before
+      stop()
+
+.song-item-hit-area
+  height: $item-height
