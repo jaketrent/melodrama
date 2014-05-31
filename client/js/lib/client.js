@@ -65,6 +65,7 @@ App.ApplicationController = Ember.ArrayController.extend({
 
 App.SongListComponent = Ember.Component.extend({
   tagName: 'li',
+  classNames: ['song-item'],
   play: 'playSong',
   stop: 'stopSong',
   actions: {

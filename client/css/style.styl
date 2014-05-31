@@ -1,5 +1,32 @@
+$icon-height = 15px
+
+$black = #000
+
 body
   background: lightblue
 
 a
   cursor: pointer
+
+.icon
+  position: relative
+  top: 2px
+  display: inline-block
+
+.play
+  width: 0
+  height: 0
+  border-top: ($icon-height / 2) solid transparent
+  border-bottom: ($icon-height / 2) solid transparent
+  border-left: ($icon-height / 1.5) solid $black
+
+.stop
+  width: 0
+  height: 0
+  border: ($icon-height / 2) solid $black
+
+.song-item
+
+  .icon
+    margin-left: 2px
+    margin-right: 2px

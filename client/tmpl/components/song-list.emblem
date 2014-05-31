@@ -1,4 +1,4 @@
 span= song.title
 span -
-a click="play" Play
-a click="stop" Stop
+a.icon.play click="play"
+a.icon.stop click="stop"
