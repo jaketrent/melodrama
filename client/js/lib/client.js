@@ -33,9 +33,9 @@ App.ApplicationController = Ember.ArrayController.extend({
   }.on('init'),
 
   playNextSong: function () {
+    this.setCurrentSongNotPlaying()
+
     var songs = this.get('model')
-    console.log('songs')
-    console.log(songs)
 
     var nextIndx = songs.indexOf(this.currentSong) + 1
 
@@ -52,13 +52,20 @@ App.ApplicationController = Ember.ArrayController.extend({
     this.audio.play()
   },
 
+  setCurrentSongNotPlaying: function () {
+    if (this.currentSong) {
+      this.currentSong.set('isPlaying', false)
+    }
+  },
+
   actions: {
     playSong: function (song) {
-      console.log('playSong')
+      this.setCurrentSongNotPlaying()
       this.currentSong = song
       this.play()
     },
     stopSong: function () {
+      this.setCurrentSongNotPlaying()
       this.audio.pause()
     }
   }
@@ -70,15 +77,15 @@ App.SongItemComponent = Ember.Component.extend({
   classNameBindings: ['isPlaying'],
   play: 'playSong',
   stop: 'stopSong',
-  isPlaying: false,
+  isPlaying: Ember.computed.alias('song.isPlaying'),
   actions: {
     togglePlay: function () {
-      if (this.get('isPlaying')) {
+      if (this.get('song.isPlaying')) {
         this.sendAction('stop')
       } else {
         this.sendAction('play', this.get('song'))
       }
-      this.toggleProperty('isPlaying')
+      this.toggleProperty('song.isPlaying')
     }
   }
 })
