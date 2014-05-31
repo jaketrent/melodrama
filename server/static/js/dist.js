@@ -66913,6 +66913,7 @@ App.ApplicationController = Ember.ArrayController.extend({
 
   actions: {
     playSong: function (song) {
+      console.log('playSong')
       this.currentSong = song
       this.play()
     },
@@ -66922,16 +66923,21 @@ App.ApplicationController = Ember.ArrayController.extend({
   }
 })
 
-App.SongListComponent = Ember.Component.extend({
+App.SongItemComponent = Ember.Component.extend({
   tagName: 'li',
+  classNames: ['song-item'],
+  classNameBindings: ['isPlaying'],
   play: 'playSong',
   stop: 'stopSong',
+  isPlaying: false,
   actions: {
-    play: function () {
-      this.sendAction('play', this.get('song'))
-    },
-    stop: function () {
-      this.sendAction('stop')
+    togglePlay: function () {
+      if (this.get('isPlaying')) {
+        this.sendAction('stop')
+      } else {
+        this.sendAction('play', this.get('song'))
+      }
+      this.toggleProperty('isPlaying')
     }
   }
 })
@@ -66944,9 +66950,9 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var helper, options;
-  data.buffer.push(escapeExpression((helper = helpers['song-list'] || (depth0 && depth0['song-list']),options={hash:{
+  data.buffer.push(escapeExpression((helper = helpers['song-item'] || (depth0 && depth0['song-item']),options={hash:{
     'song': ("song")
-  },hashTypes:{'song': "ID"},hashContexts:{'song': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "song-list", options))));
+  },hashTypes:{'song': "ID"},hashContexts:{'song': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "song-item", options))));
   }
 
 function program3(depth0,data) {
@@ -66955,33 +66961,29 @@ function program3(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div class=\"container\"><h1 class=\"title\">Melodrama!</h1><h3>Songs:</h3><ul>");
+  data.buffer.push("<div class=\"container\"><h1 class=\"title\">Melodrama!</h1>");
   stack1 = helpers.each.call(depth0, "song", "in", "", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</ul></div>");
+  data.buffer.push("</div>");
   return buffer;
   
 })
 
-Ember.TEMPLATES['components/song-list'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
+Ember.TEMPLATES['components/song-item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data
 /**/) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<span>");
+  data.buffer.push("<div ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "togglePlay", {hash:{
+    'on': ("click")
+  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  data.buffer.push(" class=\"song-item-hit-area\"><span>");
   stack1 = helpers._triageMustache.call(depth0, "song.title", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("</span><span>-</span><a ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "play", {hash:{
-    'on': ("click")
-  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">Play</a><a ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "stop", {hash:{
-    'on': ("click")
-  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(">Stop</a>");
+  data.buffer.push("</span></div>");
   return buffer;
   
 })
