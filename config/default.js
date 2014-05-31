@@ -6,7 +6,11 @@ module.exports = {
     jsPath: '/js/dist.js'
   },
 
-  collection: 'Childrens-EN',
+  collections: [
+    'MagFriend-EN',
+    'ChildrensAdditional-EN',
+    'Childrens-EN'
+  ],
 
   lang: 'en',
 
@@ -14,7 +18,7 @@ module.exports = {
 
   url: {
     index: 'http://broadcast3.lds.org/crowdsource/Mobile/LDSMusic/Staging/Metadata/9/Index.json',
-    collection: 'http://broadcast3.lds.org/crowdsource/Mobile/LDSMusic/Staging/Collections/Childrens-EN/%s/Collection.json'
+    collection: 'http://broadcast3.lds.org/crowdsource/Mobile/LDSMusic/Staging/Collections/%s/%s/Collection.json'
   }
 
 }

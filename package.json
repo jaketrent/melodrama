@@ -34,7 +34,8 @@
     "mincer": "~1.0.3",
     "stylus": "~0.45.1",
     "superagent": "~0.18.0",
-    "nib": "~1.0.2"
+    "nib": "~1.0.2",
+    "rsvp": "~3.0.6"
   },
   "devDependencies": {
     "broccoli": "~0.12.0",
