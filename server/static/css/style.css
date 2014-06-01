@@ -36,6 +36,7 @@ a {
   background: #add8e6;
   border-radius: 4px;
   z-index: 1;
+  cursor: pointer;
 }
 .song-item:hover {
   background: #8ec9dd;
