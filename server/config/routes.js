@@ -1,3 +1,5 @@
+'use strict'
+
 const index = require('../common/controllers/index')
 const songs = require('../songs/songs-ctrl')
 

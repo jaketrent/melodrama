@@ -43,6 +43,7 @@ App.ApplicationController = Ember.ArrayController.extend({
       nextIndx = 0
 
     this.currentSong = songs.objectAt(nextIndx)
+    this.currentSong.set('isPlaying', true)
 
     this.play()
   },
@@ -74,10 +75,9 @@ App.ApplicationController = Ember.ArrayController.extend({
 App.SongItemComponent = Ember.Component.extend({
   tagName: 'li',
   classNames: ['song-item'],
-  classNameBindings: ['isPlaying'],
+  classNameBindings: ['song.isPlaying'],
   play: 'playSong',
   stop: 'stopSong',
-  isPlaying: Ember.computed.alias('song.isPlaying'),
   actions: {
     togglePlay: function () {
       if (this.get('song.isPlaying')) {
