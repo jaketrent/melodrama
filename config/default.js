@@ -1,7 +1,7 @@
 module.exports = {
 
   assets: {
-    baseUrl: 'http://localhost:4200',
+    baseUrl: 'http://192.168.0.104:4200',
     cssPath: '/css/style.css',
     jsPath: '/js/dist.js'
   },
